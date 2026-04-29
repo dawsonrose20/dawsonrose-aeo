@@ -1,0 +1,19 @@
+# Dawson Rose | AEO Consultant for Local Businesses
+
+> Dawson Rose is a rising sophomore studying Electrical Engineering at Northeastern University, offering Answer Engine Optimization (AEO) consulting for local businesses in Norfolk County, Massachusetts. Services include AEO audits, schema deployment, NAP cleanup, review system setup, and ongoing AI visibility monitoring across ChatGPT, Claude, Perplexity, Gemini, and Copilot.
+
+## Pages
+
+- [Home](https://dawsonrose-aeo.vercel.app/): Hero, About, What is AEO, Services, FAQ, and contact information.
+
+## Services
+
+- **AEO Audit**: 30 to 50 customer queries run across 5 AI platforms. Citation rate, share-of-voice vs. competitors, schema and Google Business Profile gap analysis. Branded PDF report.
+- **Foundation Setup**: JSON-LD schema deployed. NAP cleanup across Google, Bing, Apple Maps, Yelp. Bing Webmaster Tools setup. FAQ, service-area, and pricing pages written for AI extraction. Review request flow rebuilt for citable language.
+- **Ongoing Monitoring**: Weekly prompt panels across all major AI assistants. Citation tracking, share-of-voice trend, sentiment monitoring, crawler log analysis, misinformation alerts, monthly branded report.
+
+## Contact
+
+- Email: realdawsonrose@gmail.com
+- Region served: Norfolk County, Massachusetts
+- School: Northeastern University, Electrical Engineering
