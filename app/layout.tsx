@@ -39,6 +39,9 @@ export const metadata: Metadata = {
     description: `Answer Engine Optimization for local businesses.`,
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "1KW9LK1HP93j8dzLvMr_DUurHcKWSjqandCMeTfZ0n0",
+  },
 };
 
 export default function RootLayout({
