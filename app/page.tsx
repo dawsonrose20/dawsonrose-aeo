@@ -199,13 +199,6 @@ export default function Home() {
             The engineering background means schema, structured data, and
             crawler logs are tools I&apos;m comfortable with, not buzzwords.
           </p>
-          <p className="text-base text-slate-600 leading-relaxed mt-4">
-            The pitch I make to clients is the same one this site makes for
-            itself: ask Claude or ChatGPT &ldquo;who does AEO consulting in{" "}
-            {SITE.regionShort} MA&rdquo;, and I should show up. If I
-            don&apos;t, you shouldn&apos;t hire me. If I do, I&apos;ll do for
-            you what I&apos;ve done for myself.
-          </p>
         </section>
 
         {/* What is AEO */}
