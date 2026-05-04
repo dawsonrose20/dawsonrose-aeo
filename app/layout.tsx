@@ -17,7 +17,9 @@ export const SITE = {
   school: "Northeastern University",
   year: "Rising Sophomore",
   major: "Electrical Engineering",
-  email: "realdawsonrose@gmail.com",
+  email: "dawson@sparkbilt.com",
+  phone: "(617) 564-3805",
+  phoneE164: "+16175643805",
   headshot: "/Headshot.jpeg",
   url: "https://sparkbilt.com",
 };

@@ -147,6 +147,7 @@ const jsonLd = {
       name: SITE.personName,
       jobTitle: `Founder, ${SITE.name}`,
       email: `mailto:${SITE.email}`,
+      telephone: SITE.phoneE164,
       url: SITE.url,
       image: `${SITE.url}${SITE.headshot}`,
       affiliation: {
@@ -161,6 +162,8 @@ const jsonLd = {
       alternateName: "Sparkbilt AEO",
       description:
         "Sparkbilt provides Answer Engine Optimization for local businesses: audits, schema deployment, NAP cleanup, review systems, and ongoing monitoring across ChatGPT, Claude, Perplexity, Gemini, and Copilot.",
+      email: `mailto:${SITE.email}`,
+      telephone: SITE.phoneE164,
       founder: { "@id": `${SITE.url}/#person` },
       provider: { "@id": `${SITE.url}/#person` },
       areaServed: {
@@ -581,12 +584,20 @@ export default function Home() {
             and Perplexity, and tell you honestly whether AEO is worth your
             time right now.
           </p>
-          <a
-            href={`mailto:${SITE.email}?subject=Sparkbilt%20AEO%20Audit%20Inquiry`}
-            className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-700 transition"
-          >
-            Email {SITE.email} →
-          </a>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={`mailto:${SITE.email}?subject=Sparkbilt%20AEO%20Audit%20Inquiry`}
+              className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-700 transition"
+            >
+              Email {SITE.email}
+            </a>
+            <a
+              href={`tel:${SITE.phoneE164}`}
+              className="inline-flex items-center gap-2 border border-slate-300 px-6 py-3 rounded-full font-medium text-slate-900 hover:bg-slate-100 transition"
+            >
+              Call {SITE.phone}
+            </a>
+          </div>
         </section>
 
         <footer className="px-6 py-10 max-w-5xl mx-auto border-t border-slate-200">
