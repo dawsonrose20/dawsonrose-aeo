@@ -341,13 +341,13 @@ export default function Home() {
         {/* 01 What is AEO */}
         <section
           id="what-is-aeo"
-          className="px-6 py-20 max-w-3xl mx-auto border-t border-slate-200"
+          className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200"
         >
           <SectionHeader
             number="01"
             title="Answer Engine Optimization, plainly stated."
           />
-          <ul className="space-y-6 text-slate-700">
+          <ul className="space-y-6 text-slate-700 max-w-3xl">
             <li className="leading-relaxed">
               <span className="font-semibold text-slate-900">
                 It&apos;s how you get into AI answers.
@@ -380,9 +380,7 @@ export default function Home() {
 
         {/* 02 Services */}
         <section className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200">
-          <div className="max-w-3xl mx-auto">
-            <SectionHeader number="02" title="How we work with clients." />
-          </div>
+          <SectionHeader number="02" title="How we work with clients." />
           <div className="grid md:grid-cols-3 gap-6">
             {services.map((s) => (
               <div
@@ -408,14 +406,12 @@ export default function Home() {
 
         {/* 03 Methodology */}
         <section className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200">
-          <div className="max-w-3xl mx-auto">
-            <SectionHeader number="03" title="Methodology." />
-            <p className="text-slate-600 leading-relaxed mb-10">
-              Every {SITE.name} engagement uses the same instrument before
-              and after. The same prompts, the same platforms, the same
-              measurement protocol. The 30-day re-audit is the proof.
-            </p>
-          </div>
+          <SectionHeader number="03" title="Methodology." />
+          <p className="text-slate-600 leading-relaxed mb-10 max-w-3xl">
+            Every {SITE.name} engagement uses the same instrument before and
+            after. The same prompts, the same platforms, the same measurement
+            protocol. The 30-day re-audit is the proof.
+          </p>
           <div className="border border-slate-200 rounded-lg overflow-hidden">
             <div className="bg-slate-900 text-white grid grid-cols-[1fr_2fr] gap-4 px-5 py-3 text-xs uppercase tracking-wider font-semibold">
               <div>Method</div>
@@ -439,16 +435,13 @@ export default function Home() {
 
         {/* 04 Sample Audit */}
         <section className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200">
-          <div className="max-w-3xl mx-auto">
-            <SectionHeader number="04" title="What you receive." />
-            <p className="text-slate-600 leading-relaxed mb-10">
-              Every engagement ends with a branded PDF report tied to
-              measurable outcomes. Citation rate, crawler access, indexed
-              content, NAP consistency, schema coverage, and a prioritized
-              remediation roadmap. The 30-day re-audit documents the
-              before-and-after.
-            </p>
-          </div>
+          <SectionHeader number="04" title="What you receive." />
+          <p className="text-slate-600 leading-relaxed mb-10 max-w-3xl">
+            Every engagement ends with a branded PDF report tied to measurable
+            outcomes. Citation rate, crawler access, indexed content, NAP
+            consistency, schema coverage, and a prioritized remediation
+            roadmap. The 30-day re-audit documents the before-and-after.
+          </p>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="border border-slate-200 rounded-lg p-6 bg-red-50">
               <p className="text-xs uppercase tracking-wider font-bold text-red-900 mb-2">
@@ -495,39 +488,44 @@ export default function Home() {
 
         {/* 05 Case Study */}
         <section className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200">
-          <div className="max-w-3xl mx-auto">
-            <SectionHeader number="05" title="Case study: RISE Studios." />
-            <p className="text-slate-600 leading-relaxed mb-10">
-              First {SITE.name} engagement. Premier recording studio in
-              Weymouth, MA, serving Greater Boston. Audited April 2026,
-              30-day re-audit pending May 2026. Before-and-after numbers fill
-              in next month.
+          <SectionHeader number="05" title="Case study: RISE Studios." />
+          <div className="border border-slate-200 rounded-2xl bg-slate-50 p-6 sm:p-10">
+            <div className="flex flex-wrap items-baseline justify-between gap-2 mb-6">
+              <p className="text-sm font-semibold tracking-wider uppercase text-slate-900">
+                RISE Studios
+              </p>
+              <p className="text-xs uppercase tracking-wider text-slate-500">
+                Weymouth, MA &nbsp;•&nbsp; Audited April 2026
+              </p>
+            </div>
+            <p className="text-slate-600 leading-relaxed mb-8 max-w-3xl">
+              First {SITE.name} engagement. Premier recording studio serving
+              Greater Boston. 30-day re-audit pending May 2026.
+              Before-and-after numbers fill in next month.
             </p>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-4 mb-8">
-            <StatCard
-              number="0%"
-              label="Baseline Citation Rate"
-              sublabel="20 queries across 3 platforms"
-            />
-            <StatCard
-              number="47"
-              label="Words Crawled"
-              sublabel="What AI bots see today"
-            />
-            <StatCard
-              number="3"
-              label="Critical Fixes"
-              sublabel="Blocking all other progress"
-            />
-          </div>
-          <div className="max-w-3xl mx-auto">
-            <p className="text-sm text-slate-700 leading-relaxed">
+            <div className="grid sm:grid-cols-3 gap-4 mb-8">
+              <StatCard
+                number="0%"
+                label="Baseline Citation Rate"
+                sublabel="20 queries across 3 platforms"
+              />
+              <StatCard
+                number="47"
+                label="Words Crawled"
+                sublabel="What AI bots see today"
+              />
+              <StatCard
+                number="3"
+                label="Critical Fixes"
+                sublabel="Blocking all other progress"
+              />
+            </div>
+            <p className="text-sm text-slate-700 leading-relaxed max-w-3xl">
               <span className="font-semibold">Diagnosis:</span> RISE
               Studios&apos; site is rendered entirely via JavaScript. AI
               crawlers do not execute JavaScript. When they visit, they
               receive a 47-word HTML shell with no room descriptions, no
-              service detail, no location data — nothing to extract or cite.
+              service detail, no location data, nothing to extract or cite.
               The fix is a Cloudflare Worker that detects bot user agents and
               serves pre-rendered, structured HTML directly. Every other AEO
               fix is blocked until that lands.
@@ -536,31 +534,33 @@ export default function Home() {
         </section>
 
         {/* 06 About */}
-        <section className="px-6 py-20 max-w-3xl mx-auto border-t border-slate-200">
+        <section className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200">
           <SectionHeader number="06" title="About." />
-          <p className="text-xl text-slate-800 leading-relaxed">
-            {SITE.name} is run by {SITE.personName}, a{" "}
-            {SITE.year.toLowerCase()} studying {SITE.major} at {SITE.school}.
-            We work with local businesses in {SITE.regionShort} to get found
-            by AI assistants. Prompt panels across ChatGPT, Claude, and
-            Perplexity. Technical foundation underneath your website. Review
-            and citation flows that decide whether AI cites you or your
-            competitor.
-          </p>
-          <p className="text-base text-slate-600 leading-relaxed mt-4">
-            We&apos;re in these AI tools every day for school and side
-            projects, which means we see how they actually retrieve and cite
-            local sources, not how a marketing blog from 2019 says they do.
-            The engineering background means schema, structured data, and
-            crawler logs are tools we&apos;re comfortable with, not
-            buzzwords.
-          </p>
+          <div className="max-w-3xl">
+            <p className="text-xl text-slate-800 leading-relaxed">
+              {SITE.name} is run by {SITE.personName}, a{" "}
+              {SITE.year.toLowerCase()} studying {SITE.major} at {SITE.school}.
+              We work with local businesses in {SITE.regionShort} to get
+              found by AI assistants. Prompt panels across ChatGPT, Claude,
+              and Perplexity. Technical foundation underneath your website.
+              Review and citation flows that decide whether AI cites you or
+              your competitor.
+            </p>
+            <p className="text-base text-slate-600 leading-relaxed mt-4">
+              We&apos;re in these AI tools every day for school and side
+              projects, which means we see how they actually retrieve and
+              cite local sources, not how a marketing blog from 2019 says
+              they do. The engineering background means schema, structured
+              data, and crawler logs are tools we&apos;re comfortable with,
+              not buzzwords.
+            </p>
+          </div>
         </section>
 
         {/* 07 FAQ */}
-        <section className="px-6 py-20 max-w-3xl mx-auto border-t border-slate-200">
+        <section className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200">
           <SectionHeader number="07" title="Common questions." />
-          <div className="space-y-8">
+          <div className="space-y-8 max-w-3xl">
             {faqs.map((f) => (
               <div key={f.q}>
                 <h3 className="text-lg font-semibold mb-2">{f.q}</h3>
@@ -573,30 +573,32 @@ export default function Home() {
         {/* 08 Contact */}
         <section
           id="contact"
-          className="px-6 py-24 max-w-3xl mx-auto border-t border-slate-200"
+          className="px-6 py-24 max-w-5xl mx-auto border-t border-slate-200"
         >
           <SectionHeader
             number="08"
             title="Want to know if AI mentions your business?"
           />
-          <p className="text-lg text-slate-600 leading-relaxed mb-8">
-            We&apos;ll run a free 10-query mini-audit across ChatGPT, Claude,
-            and Perplexity, and tell you honestly whether AEO is worth your
-            time right now.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={`mailto:${SITE.email}?subject=Sparkbilt%20AEO%20Audit%20Inquiry`}
-              className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-700 transition"
-            >
-              Email {SITE.email}
-            </a>
-            <a
-              href={`tel:${SITE.phoneE164}`}
-              className="inline-flex items-center gap-2 border border-slate-300 px-6 py-3 rounded-full font-medium text-slate-900 hover:bg-slate-100 transition"
-            >
-              Call {SITE.phone}
-            </a>
+          <div className="max-w-3xl">
+            <p className="text-lg text-slate-600 leading-relaxed mb-8">
+              We&apos;ll run a free 10-query mini-audit across ChatGPT,
+              Claude, and Perplexity, and tell you honestly whether AEO is
+              worth your time right now.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={`mailto:${SITE.email}?subject=Sparkbilt%20AEO%20Audit%20Inquiry`}
+                className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-700 transition"
+              >
+                Email {SITE.email}
+              </a>
+              <a
+                href={`tel:${SITE.phoneE164}`}
+                className="inline-flex items-center gap-2 border border-slate-300 px-6 py-3 rounded-full font-medium text-slate-900 hover:bg-slate-100 transition"
+              >
+                Call {SITE.phone}
+              </a>
+            </div>
           </div>
         </section>
 
