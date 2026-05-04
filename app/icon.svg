@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 96 96" fill="none">
+  <!--
+    Sparkbilt — compass mark only
+    Renders at 1024x1024 by default for clean PNG export via browser "Save image as".
+    The viewBox stays at 96x96 so all geometry is unchanged — only the rendered size scales.
+    Edit hex values to adapt:
+      #c83838  primary red
+      #0c1018  center punch (set fill="none" for transparent center)
+  -->
+
+  <g transform="translate(48, 48)">
+    <!-- Cardinal thorns -->
+    <path d="M 0,-32 L 4,0 L 0,32 L -4,0 Z" fill="#c83838"/>
+    <path d="M -32,0 L 0,4 L 32,0 L 0,-4 Z" fill="#c83838"/>
+    <!-- Diagonal thorns -->
+    <path d="M 0,-20 L 2.5,0 L 0,20 L -2.5,0 Z" transform="rotate(45)"  fill="#c83838" opacity="0.5"/>
+    <path d="M 0,-20 L 2.5,0 L 0,20 L -2.5,0 Z" transform="rotate(-45)" fill="#c83838" opacity="0.5"/>
+    <!-- Center punch -->
+    <circle r="2.4" fill="#0c1018"/>
+  </g>
+</svg>
