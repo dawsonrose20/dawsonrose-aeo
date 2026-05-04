@@ -9,8 +9,9 @@ const geistSans = Geist({
 
 // Edit these to match your details before deploying.
 export const SITE = {
-  name: "Dawson Rose",
-  role: "AEO Consultant for Local Businesses",
+  name: "Sparkbilt",
+  personName: "Dawson Rose",
+  role: "Answer Engine Optimization for Local Businesses",
   region: "Norfolk County, MA",
   regionShort: "Norfolk County",
   school: "Northeastern University",
@@ -18,7 +19,7 @@ export const SITE = {
   major: "Electrical Engineering",
   email: "realdawsonrose@gmail.com",
   headshot: "/Headshot.jpeg",
-  url: "https://dawsonrose-aeo.vercel.app",
+  url: "https://sparkbilt.com",
 };
 
 export const metadata: Metadata = {
@@ -39,9 +40,6 @@ export const metadata: Metadata = {
     description: `Answer Engine Optimization for local businesses.`,
   },
   robots: { index: true, follow: true },
-  verification: {
-    google: "1KW9LK1HP93j8dzLvMr_DUurHcKWSjqandCMeTfZ0n0",
-  },
 };
 
 export default function RootLayout({
