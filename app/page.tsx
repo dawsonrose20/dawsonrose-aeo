@@ -11,7 +11,7 @@ const services: {
   {
     name: "AEO Audit",
     summary:
-      "Where you stand today across ChatGPT, Claude, and Perplexity, with proof.",
+      "Where you stand today across ChatGPT, Claude, Perplexity, Gemini, and Copilot, with proof.",
     items: [
       {
         tier: "CRITICAL",
@@ -19,7 +19,7 @@ const services: {
       },
       {
         tier: "HIGH",
-        text: "20 customer queries run across ChatGPT, Claude, and Perplexity",
+        text: "20 customer queries run across ChatGPT, Claude, Perplexity, Gemini, and Copilot",
       },
       {
         tier: "HIGH",
@@ -66,7 +66,7 @@ const services: {
       },
       {
         tier: "HIGH",
-        text: "20 representative queries run weekly across ChatGPT, Claude, and Perplexity",
+        text: "20 representative queries run weekly across ChatGPT, Claude, Perplexity, Gemini, and Copilot",
       },
       {
         tier: "HIGH",
@@ -90,7 +90,7 @@ const methodology = [
   {
     method: "Prompt Panel Testing",
     description:
-      "20 representative queries across ChatGPT, Claude, and Perplexity. Service searches, location queries, and competitor comparisons. Scored for citation presence and sentiment.",
+      "20 representative queries across ChatGPT, Claude, Perplexity, Gemini, and Copilot. Service searches, location queries, and competitor comparisons. Scored for citation presence and sentiment.",
   },
   {
     method: "Schema & Structured Data Audit",
@@ -134,7 +134,7 @@ const faqs = [
   },
   {
     q: "Can you actually prove the work worked?",
-    a: "Yes. Same 20 queries, same 3 AI platforms (ChatGPT, Claude, Perplexity), run before and 30 days after, side by side. Plus crawler logs showing OAI-SearchBot, ClaudeBot, and PerplexityBot literally fetching your new pages. Plus indexing dashboards from Bing Webmaster Tools and Google Search Console. Lead-source attribution is genuinely fuzzy in AEO and I will not pretend otherwise.",
+    a: "Yes. Same 20 queries, same 5 AI platforms (ChatGPT, Claude, Perplexity, Gemini, Copilot), run before and 30 days after, side by side. Plus crawler logs showing OAI-SearchBot, ClaudeBot, and PerplexityBot literally fetching your new pages. Plus indexing dashboards from Bing Webmaster Tools and Google Search Console. Lead-source attribution is genuinely fuzzy in AEO and I will not pretend otherwise.",
   },
 ];
 
@@ -161,7 +161,7 @@ const jsonLd = {
       name: SITE.name,
       alternateName: "Sparkbilt AEO",
       description:
-        "Sparkbilt provides Answer Engine Optimization for local businesses: audits, schema deployment, NAP cleanup, review systems, and ongoing monitoring across ChatGPT, Claude, and Perplexity.",
+        "Sparkbilt provides Answer Engine Optimization for local businesses: audits, schema deployment, NAP cleanup, review systems, and ongoing monitoring across ChatGPT, Claude, Perplexity, Gemini, and Copilot.",
       email: `mailto:${SITE.email}`,
       telephone: SITE.phoneE164,
       founder: { "@id": `${SITE.url}/#person` },
@@ -323,7 +323,7 @@ export default function Home() {
             <StatCard
               number="20"
               label="Queries Per Audit"
-              sublabel="ChatGPT, Claude, Perplexity"
+              sublabel="ChatGPT, Claude, Perplexity, Gemini, Copilot"
             />
             <StatCard
               number="30"
@@ -582,8 +582,8 @@ export default function Home() {
           <div className="max-w-3xl">
             <p className="text-lg text-slate-600 leading-relaxed mb-8">
               We&apos;ll run a free 10-query mini-audit across ChatGPT,
-              Claude, and Perplexity, and tell you honestly whether AEO is
-              worth your time right now.
+              Claude, Perplexity, Gemini, and Copilot, and tell you honestly
+              whether AEO is worth your time right now.
             </p>
             <div className="flex flex-wrap gap-3">
               <a

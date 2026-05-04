@@ -1,6 +1,6 @@
 # Sparkbilt | Answer Engine Optimization for Local Businesses
 
-> Sparkbilt provides Answer Engine Optimization (AEO) consulting for local businesses in Norfolk County, Massachusetts. Founded by Dawson Rose, a rising sophomore studying Electrical Engineering at Northeastern University. Services include AEO audits, schema deployment, NAP cleanup, review system setup, and ongoing AI visibility monitoring across ChatGPT, Claude, and Perplexity.
+> Sparkbilt provides Answer Engine Optimization (AEO) consulting for local businesses in Norfolk County, Massachusetts. Founded by Dawson Rose, a rising sophomore studying Electrical Engineering at Northeastern University. Services include AEO audits, schema deployment, NAP cleanup, review system setup, and ongoing AI visibility monitoring across ChatGPT, Claude, Perplexity, Gemini, and Copilot.
 
 ## Pages
 
@@ -8,9 +8,9 @@
 
 ## Services
 
-- **AEO Audit**: 20 customer queries run across ChatGPT, Claude, and Perplexity. Citation rate, share-of-voice vs. competitors, schema and Google Business Profile gap analysis. Branded PDF report.
+- **AEO Audit**: 20 customer queries run across ChatGPT, Claude, Perplexity, Gemini, and Copilot. Citation rate, share-of-voice vs. competitors, schema and Google Business Profile gap analysis. Branded PDF report.
 - **Foundation Setup**: JSON-LD schema deployed. NAP cleanup across Google, Bing, Apple Maps, Yelp. Bing Webmaster Tools setup. FAQ, service-area, and pricing pages written for AI extraction. Review request flow rebuilt for citable language.
-- **Ongoing Monitoring**: Weekly 20-query prompt panels across ChatGPT, Claude, and Perplexity. Citation tracking, share-of-voice trend, sentiment monitoring, crawler log analysis, misinformation alerts, monthly branded report.
+- **Ongoing Monitoring**: Weekly 20-query prompt panels across ChatGPT, Claude, Perplexity, Gemini, and Copilot. Citation tracking, share-of-voice trend, sentiment monitoring, crawler log analysis, misinformation alerts, monthly branded report.
 
 ## Contact
 
