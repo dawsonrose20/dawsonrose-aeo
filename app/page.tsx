@@ -265,9 +265,18 @@ export default function Home() {
       <main className="font-sans">
         {/* Top brand bar */}
         <div className="px-6 py-4 max-w-5xl mx-auto flex items-center justify-between">
-          <span className="text-sm font-bold tracking-widest uppercase">
-            {SITE.name}
-          </span>
+          <div className="flex items-center gap-2">
+            <img
+              src="/icon.svg"
+              alt=""
+              width={28}
+              height={28}
+              className="w-7 h-7"
+            />
+            <span className="text-sm font-bold tracking-widest uppercase">
+              {SITE.name}
+            </span>
+          </div>
           <span className="text-xs text-slate-500 tracking-wide hidden sm:block">
             Answer Engine Optimization
           </span>
