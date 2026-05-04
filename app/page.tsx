@@ -315,6 +315,9 @@ export default function Home() {
                 priority
                 className="rounded-2xl shadow-md w-full h-auto bg-slate-100"
               />
+              <p className="mt-3 text-sm font-medium text-slate-700 text-center">
+                {SITE.personName} - Founder
+              </p>
             </div>
           </div>
 
