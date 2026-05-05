@@ -316,7 +316,7 @@ export default function Home() {
         }}
       />
 
-      <main className="font-sans">
+      <main className="font-sans overflow-x-hidden">
         {/* Top brand bar */}
         <div className="px-6 py-5 max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -337,20 +337,20 @@ export default function Home() {
         </div>
 
         {/* Hero */}
-        <section className="relative px-6 pt-16 pb-24 sm:pt-24 sm:pb-32 max-w-6xl mx-auto overflow-hidden">
+        <section className="relative px-6 pt-16 pb-24 sm:pt-24 sm:pb-32 max-w-6xl mx-auto">
           {/* Compass watermark with cursor parallax */}
-          <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+          <div className="absolute inset-0 -z-10 pointer-events-none">
             <CursorParallax
               intensity={18}
-              className="absolute -right-32 -top-24 sm:-right-48 sm:-top-32"
+              className="absolute right-0 top-0 sm:right-4 sm:top-4"
             >
               <img
                 src="/icon.svg"
                 alt=""
-                width={720}
-                height={720}
-                className="opacity-[0.06] select-none"
-                style={{ width: "min(720px, 60vw)", height: "auto" }}
+                width={640}
+                height={640}
+                className="opacity-[0.05] select-none"
+                style={{ width: "min(640px, 55vw)", height: "auto" }}
               />
             </CursorParallax>
           </div>
@@ -405,7 +405,7 @@ export default function Home() {
                     className="w-full h-auto block"
                   />
                 </div>
-                <p className="mt-3 text-sm font-medium text-slate-700 text-center">
+                <p className="mt-3 text-sm italic text-slate-600 text-center">
                   {SITE.personName} - Founder
                 </p>
               </div>
