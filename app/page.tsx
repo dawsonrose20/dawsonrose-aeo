@@ -269,9 +269,9 @@ export default function Home() {
             <img
               src="/icon.svg"
               alt=""
-              width={28}
-              height={28}
-              className="w-7 h-7"
+              width={32}
+              height={32}
+              className="w-8 h-8"
             />
             <span className="text-sm font-bold tracking-widest uppercase">
               {SITE.name}
