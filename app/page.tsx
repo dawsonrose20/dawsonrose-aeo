@@ -593,7 +593,7 @@ export default function Home() {
           />
           <div className="max-w-3xl">
             <p className="text-lg text-slate-600 leading-relaxed mb-8">
-              We&apos;ll run a free 10-query mini-audit across ChatGPT,
+              We&apos;ll run a free audit across ChatGPT,
               Claude, Perplexity, Gemini, and Copilot, and tell you honestly
               whether AEO is worth your time right now.
             </p>
