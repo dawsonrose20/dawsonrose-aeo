@@ -49,7 +49,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
-      <body className="min-h-full bg-white text-slate-900">{children}</body>
+      <body className="min-h-full">{children}</body>
     </html>
   );
 }

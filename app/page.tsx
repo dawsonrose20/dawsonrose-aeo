@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { SITE } from "./layout";
+import { FadeUp } from "./components/FadeUp";
+import { StatCounter } from "./components/StatCounter";
+import { CursorParallax } from "./components/CursorParallax";
 
 type Tier = "CRITICAL" | "HIGH" | "MEDIUM";
 
@@ -209,23 +212,46 @@ const tierStyles: Record<Tier, string> = {
   MEDIUM: "bg-emerald-50 text-emerald-700",
 };
 
-function SectionHeader({ number, title }: { number: string; title: string }) {
+const tierStylesDark: Record<Tier, string> = {
+  CRITICAL: "bg-red-950/60 text-red-300",
+  HIGH: "bg-amber-950/60 text-amber-300",
+  MEDIUM: "bg-emerald-950/60 text-emerald-300",
+};
+
+function SectionHeader({
+  number,
+  title,
+  dark = false,
+}: {
+  number: string;
+  title: string;
+  dark?: boolean;
+}) {
   return (
-    <header className="mb-10">
-      <p className="text-sm font-bold text-red-900 tracking-tight mb-2">
+    <header className="mb-12">
+      <p
+        className={`text-sm font-bold tracking-tight mb-3 ${
+          dark ? "text-red-400" : "text-red-900"
+        }`}
+      >
         {number}
       </p>
-      <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight pb-3 border-b-2 border-emerald-700">
+      <h2
+        className={`text-4xl sm:text-5xl md:text-6xl text-display pb-4 border-b-2 ${
+          dark ? "border-emerald-500" : "border-emerald-700"
+        }`}
+      >
         {title}
       </h2>
     </header>
   );
 }
 
-function TierPill({ tier }: { tier: Tier }) {
+function TierPill({ tier, dark = false }: { tier: Tier; dark?: boolean }) {
+  const styles = dark ? tierStylesDark : tierStyles;
   return (
     <span
-      className={`inline-block ${tierStyles[tier]} text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded shrink-0 mt-1`}
+      className={`inline-block ${styles[tier]} text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded shrink-0 mt-1`}
     >
       {tier}
     </span>
@@ -234,20 +260,48 @@ function TierPill({ tier }: { tier: Tier }) {
 
 function StatCard({
   number,
+  suffix = "",
   label,
   sublabel,
+  dark = false,
+  animated = true,
 }: {
-  number: string;
+  number: number;
+  suffix?: string;
   label: string;
   sublabel: string;
+  dark?: boolean;
+  animated?: boolean;
 }) {
   return (
-    <div className="border border-slate-200 rounded-lg p-6 bg-white text-center sm:text-left">
-      <p className="text-5xl sm:text-6xl font-bold text-red-900 leading-none">
-        {number}
+    <div
+      className={`rounded-xl p-7 ${
+        dark
+          ? "bg-slate-800/60 border border-slate-700"
+          : "bg-white border border-slate-200 shadow-floating"
+      }`}
+    >
+      <p
+        className={`text-6xl sm:text-7xl font-black leading-none tracking-tighter ${
+          dark ? "text-red-400" : "text-red-900"
+        }`}
+      >
+        {animated ? <StatCounter value={number} suffix={suffix} /> : `${number}${suffix}`}
       </p>
-      <p className="text-base font-semibold mt-3">{label}</p>
-      <p className="text-sm text-slate-500 mt-1 leading-snug">{sublabel}</p>
+      <p
+        className={`text-base font-semibold mt-4 ${
+          dark ? "text-slate-100" : "text-slate-900"
+        }`}
+      >
+        {label}
+      </p>
+      <p
+        className={`text-sm mt-1 leading-snug ${
+          dark ? "text-slate-400" : "text-slate-500"
+        }`}
+      >
+        {sublabel}
+      </p>
     </div>
   );
 }
@@ -264,7 +318,7 @@ export default function Home() {
 
       <main className="font-sans">
         {/* Top brand bar */}
-        <div className="px-6 py-4 max-w-5xl mx-auto flex items-center justify-between">
+        <div className="px-6 py-5 max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
               src="/icon.svg"
@@ -283,338 +337,446 @@ export default function Home() {
         </div>
 
         {/* Hero */}
-        <section className="px-6 pt-12 pb-16 max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-[3fr_2fr] gap-10 md:gap-14 items-center">
-            <div>
-              <p className="text-sm uppercase tracking-widest text-red-900 font-bold mb-6">
-                Answer Engine Optimization
-              </p>
-              <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight mb-6">
-                {SITE.name} helps local businesses get found and recommended
-                by AI.
-              </h1>
-              <p className="text-lg text-slate-600 leading-relaxed mb-8">
-                When your customers ask ChatGPT, Claude, or Perplexity for a{" "}
-                <em>plumber near them</em>, a{" "}
-                <em>salon in their neighborhood</em>, or a{" "}
-                <em>contractor they can trust</em>, your business should be in
-                the answer. Most aren&apos;t. We fix that.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-700 transition"
-                >
-                  Get an AEO audit
-                </a>
-                <a
-                  href="#what-is-aeo"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-slate-700 hover:bg-slate-100 transition"
-                >
-                  What is AEO? →
-                </a>
-              </div>
-            </div>
-            <div className="md:order-last">
-              <Image
-                src={SITE.headshot}
-                alt={`${SITE.personName}, founder of ${SITE.name}`}
-                width={1009}
-                height={793}
-                priority
-                className="rounded-2xl shadow-md w-full h-auto bg-slate-100"
+        <section className="relative px-6 pt-16 pb-24 sm:pt-24 sm:pb-32 max-w-6xl mx-auto overflow-hidden">
+          {/* Compass watermark with cursor parallax */}
+          <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+            <CursorParallax
+              intensity={18}
+              className="absolute -right-32 -top-24 sm:-right-48 sm:-top-32"
+            >
+              <img
+                src="/icon.svg"
+                alt=""
+                width={720}
+                height={720}
+                className="opacity-[0.06] select-none"
+                style={{ width: "min(720px, 60vw)", height: "auto" }}
               />
-              <p className="mt-3 text-sm font-medium text-slate-700 text-center">
-                {SITE.personName} - Founder
-              </p>
-            </div>
+            </CursorParallax>
           </div>
 
-          {/* Hero stat strip */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12">
-            <StatCard
-              number="20"
-              label="Queries Per Audit"
-              sublabel="ChatGPT, Claude, Perplexity, Gemini, Copilot"
-            />
-            <StatCard
-              number="30"
-              label="Day Re-audit Cycle"
-              sublabel="Same queries, before vs. after"
-            />
-            <StatCard
-              number="100%"
-              label="Schema Validated"
-              sublabel="JSON-LD on every build"
-            />
-          </div>
-        </section>
+          <FadeUp>
+            <p className="text-xs sm:text-sm uppercase tracking-[0.25em] text-red-900 font-bold mb-8">
+              Answer Engine Optimization
+            </p>
+          </FadeUp>
+          <FadeUp delay={80}>
+            <h1
+              className="text-display mb-10 max-w-5xl"
+              style={{ fontSize: "clamp(48px, 9vw, 124px)" }}
+            >
+              Get found and recommended by AI.
+            </h1>
+          </FadeUp>
 
-        {/* 01 What is AEO */}
-        <section
-          id="what-is-aeo"
-          className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200"
-        >
-          <SectionHeader
-            number="01"
-            title="Answer Engine Optimization, plainly stated."
-          />
-          <ul className="space-y-6 text-slate-700 max-w-3xl">
-            <li className="leading-relaxed">
-              <span className="font-semibold text-slate-900">
-                It&apos;s how you get into AI answers.
-              </span>{" "}
-              When ChatGPT, Claude, Perplexity, Google AI Overviews, or
-              Copilot recommend a business, they pick from a small pool of
-              sources and only cite a fraction. AEO is the work of getting in
-              that pool, then surviving the cut.
-            </li>
-            <li className="leading-relaxed">
-              <span className="font-semibold text-slate-900">
-                It&apos;s a layer on top of SEO, not a replacement.
-              </span>{" "}
-              Schema markup, NAP consistency, structured FAQs, review
-              velocity, and authority citations all matter, but they have to
-              be engineered for retrieval, not just ranking. Different game,
-              different rules.
-            </li>
-            <li className="leading-relaxed">
-              <span className="font-semibold text-slate-900">
-                Local categories are unusually winnable.
-              </span>{" "}
-              The retrieval pool for &quot;plumber near Quincy MA&quot; is
-              20–40 sources, not 20 million. The businesses that move first
-              take the seats, and AI assistants are sticky once they pick a
-              recommendation.
-            </li>
-          </ul>
-        </section>
-
-        {/* 02 Services */}
-        <section className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200">
-          <SectionHeader number="02" title="How we work with clients." />
-          <div className="grid md:grid-cols-3 gap-6">
-            {services.map((s) => (
-              <div
-                key={s.name}
-                className="border border-slate-200 rounded-2xl p-6 flex flex-col hover:border-slate-400 transition"
-              >
-                <h3 className="text-xl font-semibold mb-3">{s.name}</h3>
-                <p className="text-slate-600 mb-5 leading-relaxed">
-                  {s.summary}
+          <FadeUp delay={160}>
+            <div className="grid md:grid-cols-[3fr_2fr] gap-12 md:gap-16 items-center">
+              <div>
+                <p className="text-lg sm:text-xl text-slate-600 leading-relaxed mb-10 max-w-2xl">
+                  When your customers ask ChatGPT, Claude, or Perplexity for a{" "}
+                  <em>plumber near them</em>, a{" "}
+                  <em>salon in their neighborhood</em>, or a{" "}
+                  <em>contractor they can trust</em>, your business should be
+                  in the answer. Most aren&apos;t. We fix that.
                 </p>
-                <ul className="space-y-3 text-sm text-slate-700 mt-auto">
-                  {s.items.map((item) => (
-                    <li key={item.text} className="flex gap-3 items-start">
-                      <TierPill tier={item.tier} />
-                      <span>{item.text}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 03 Methodology */}
-        <section className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200">
-          <SectionHeader number="03" title="Methodology." />
-          <p className="text-slate-600 leading-relaxed mb-10 max-w-3xl">
-            Every {SITE.name} engagement uses the same instrument before and
-            after. The same prompts, the same platforms, the same measurement
-            protocol. The 30-day re-audit is the proof.
-          </p>
-          <div className="border border-slate-200 rounded-lg overflow-hidden">
-            <div className="bg-slate-900 text-white grid grid-cols-[1fr_2fr] gap-4 px-5 py-3 text-xs uppercase tracking-wider font-semibold">
-              <div>Method</div>
-              <div>Description</div>
-            </div>
-            {methodology.map((m, i) => (
-              <div
-                key={m.method}
-                className={`grid grid-cols-1 sm:grid-cols-[1fr_2fr] gap-4 px-5 py-4 ${
-                  i % 2 === 0 ? "bg-white" : "bg-slate-50"
-                }`}
-              >
-                <div className="font-semibold text-slate-900">{m.method}</div>
-                <div className="text-sm text-slate-600 leading-relaxed">
-                  {m.description}
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-2 bg-slate-900 text-white px-7 py-3.5 rounded-full font-medium hover:bg-slate-700 transition shadow-floating"
+                  >
+                    Get an AEO audit
+                  </a>
+                  <a
+                    href="#what-is-aeo"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-medium text-slate-700 hover:bg-slate-100 transition"
+                  >
+                    What is AEO? →
+                  </a>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 04 Sample Audit */}
-        <section className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200">
-          <SectionHeader number="04" title="What you receive." />
-          <p className="text-slate-600 leading-relaxed mb-10 max-w-3xl">
-            Every engagement ends with a branded PDF report tied to measurable
-            outcomes. Citation rate, crawler access, indexed content, NAP
-            consistency, schema coverage, and a prioritized remediation
-            roadmap. The 30-day re-audit documents the before-and-after.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="border border-slate-200 rounded-lg p-6 bg-red-50">
-              <p className="text-xs uppercase tracking-wider font-bold text-red-900 mb-2">
-                Critical
-              </p>
-              <p className="font-semibold text-slate-900 mb-1">
-                3 blocking fixes
-              </p>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Rendering, schema, indexing path. Nothing else takes effect
-                until these are live.
-              </p>
-            </div>
-            <div className="border border-slate-200 rounded-lg p-6 bg-amber-50">
-              <p className="text-xs uppercase tracking-wider font-bold text-amber-800 mb-2">
-                High
-              </p>
-              <p className="font-semibold text-slate-900 mb-1">
-                5 direct-impact fixes
-              </p>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                robots.txt, NAP standardization, GBP optimization, crawler
-                content, llms.txt.
-              </p>
-            </div>
-            <div className="border border-slate-200 rounded-lg p-6 bg-emerald-50">
-              <p className="text-xs uppercase tracking-wider font-bold text-emerald-700 mb-2">
-                Medium
-              </p>
-              <p className="font-semibold text-slate-900 mb-1">
-                4 long-term plays
-              </p>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Directory citations, review templates, badge cleanup, Apple
-                Business Connect.
-              </p>
-            </div>
-          </div>
-          <p className="text-sm text-slate-500 mt-8 text-center">
-            Sample taken from a real {SITE.name} client audit. Specifics vary
-            by industry and current state.
-          </p>
-        </section>
-
-        {/* 05 Case Study */}
-        <section className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200">
-          <SectionHeader number="05" title="Case study: RISE Studios." />
-          <div className="border border-slate-200 rounded-2xl bg-slate-50 p-6 sm:p-10">
-            <div className="flex flex-wrap items-baseline justify-between gap-2 mb-6">
-              <p className="text-sm font-semibold tracking-wider uppercase text-slate-900">
-                RISE Studios
-              </p>
-              <p className="text-xs uppercase tracking-wider text-slate-500">
-                Weymouth, MA &nbsp;•&nbsp; Audited April 2026
-              </p>
-            </div>
-            <p className="text-slate-600 leading-relaxed mb-8 max-w-3xl">
-              First {SITE.name} engagement. Premier recording studio serving
-              Greater Boston. 30-day re-audit pending May 2026.
-              Before-and-after numbers fill in next month.
-            </p>
-            <div className="grid sm:grid-cols-3 gap-4 mb-8">
-              <StatCard
-                number="0%"
-                label="Baseline Citation Rate"
-                sublabel="20 queries across 3 platforms"
-              />
-              <StatCard
-                number="47"
-                label="Words Crawled"
-                sublabel="What AI bots see today"
-              />
-              <StatCard
-                number="3"
-                label="Critical Fixes"
-                sublabel="Blocking all other progress"
-              />
-            </div>
-            <p className="text-sm text-slate-700 leading-relaxed max-w-3xl">
-              <span className="font-semibold">Diagnosis:</span> RISE
-              Studios&apos; site is rendered entirely via JavaScript. AI
-              crawlers do not execute JavaScript. When they visit, they
-              receive a 47-word HTML shell with no room descriptions, no
-              service detail, no location data, nothing to extract or cite.
-              The fix is a Cloudflare Worker that detects bot user agents and
-              serves pre-rendered, structured HTML directly. Every other AEO
-              fix is blocked until that lands.
-            </p>
-          </div>
-        </section>
-
-        {/* 06 About */}
-        <section className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200">
-          <SectionHeader number="06" title="About." />
-          <div className="max-w-3xl">
-            <p className="text-xl text-slate-800 leading-relaxed">
-              {SITE.name} is run by {SITE.personName}, a{" "}
-              {SITE.year.toLowerCase()} studying {SITE.major} at {SITE.school}.
-              We work with local businesses in {SITE.regionShort} to get
-              found by AI assistants. Prompt panels across ChatGPT, Claude,
-              and Perplexity. Technical foundation underneath your website.
-              Review and citation flows that decide whether AI cites you or
-              your competitor.
-            </p>
-            <p className="text-base text-slate-600 leading-relaxed mt-4">
-              We&apos;re in these AI tools every day for school and side
-              projects, which means we see how they actually retrieve and
-              cite local sources, not how a marketing blog from 2019 says
-              they do. The engineering background means schema, structured
-              data, and crawler logs are tools we&apos;re comfortable with,
-              not buzzwords.
-            </p>
-          </div>
-        </section>
-
-        {/* 07 FAQ */}
-        <section className="px-6 py-20 max-w-5xl mx-auto border-t border-slate-200">
-          <SectionHeader number="07" title="Common questions." />
-          <div className="space-y-8 max-w-3xl">
-            {faqs.map((f) => (
-              <div key={f.q}>
-                <h3 className="text-lg font-semibold mb-2">{f.q}</h3>
-                <p className="text-slate-600 leading-relaxed">{f.a}</p>
+              <div className="md:order-last">
+                <div className="rounded-2xl overflow-hidden bg-slate-100 shadow-floating">
+                  <Image
+                    src={SITE.headshot}
+                    alt={`${SITE.personName}, founder of ${SITE.name}`}
+                    width={1009}
+                    height={793}
+                    priority
+                    className="w-full h-auto block"
+                  />
+                </div>
+                <p className="mt-3 text-sm font-medium text-slate-700 text-center">
+                  {SITE.personName} - Founder
+                </p>
               </div>
-            ))}
-          </div>
+            </div>
+          </FadeUp>
+
+          {/* Stat strip */}
+          <FadeUp delay={280}>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-20">
+              <StatCard
+                number={20}
+                label="Queries Per Audit"
+                sublabel="ChatGPT, Claude, Perplexity, Gemini, Copilot"
+              />
+              <StatCard
+                number={30}
+                label="Day Re-audit Cycle"
+                sublabel="Same queries, before vs. after"
+              />
+              <StatCard
+                number={100}
+                suffix="%"
+                label="Schema Validated"
+                sublabel="JSON-LD on every build"
+              />
+            </div>
+          </FadeUp>
         </section>
 
-        {/* 08 Contact */}
+        {/* 01 What is AEO — light */}
         <section
-          id="contact"
-          className="px-6 py-24 max-w-5xl mx-auto border-t border-slate-200"
+          id="what-is-aeo"
+          className="px-6 py-28 sm:py-36 max-w-6xl mx-auto"
         >
-          <SectionHeader
-            number="08"
-            title="Want to know if AI mentions your business?"
-          />
-          <div className="max-w-3xl">
-            <p className="text-lg text-slate-600 leading-relaxed mb-8">
-              We&apos;ll run a free audit across ChatGPT,
-              Claude, Perplexity, Gemini, and Copilot, and tell you honestly
-              whether AEO is worth your time right now.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href={`mailto:${SITE.email}?subject=Sparkbilt%20AEO%20Audit%20Inquiry`}
-                className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-700 transition"
-              >
-                Email {SITE.email}
-              </a>
-              <a
-                href={`tel:${SITE.phoneE164}`}
-                className="inline-flex items-center gap-2 border border-slate-300 px-6 py-3 rounded-full font-medium text-slate-900 hover:bg-slate-100 transition"
-              >
-                Call {SITE.phone}
-              </a>
+          <FadeUp>
+            <SectionHeader
+              number="01"
+              title="Answer Engine Optimization, plainly stated."
+            />
+          </FadeUp>
+          <FadeUp delay={80}>
+            <ul className="space-y-8 text-slate-700 max-w-3xl text-lg leading-relaxed">
+              <li>
+                <span className="font-semibold text-slate-900">
+                  It&apos;s how you get into AI answers.
+                </span>{" "}
+                When ChatGPT, Claude, Perplexity, Google AI Overviews, or
+                Copilot recommend a business, they pick from a small pool of
+                sources and only cite a fraction. AEO is the work of getting
+                in that pool, then surviving the cut.
+              </li>
+              <li>
+                <span className="font-semibold text-slate-900">
+                  It&apos;s a layer on top of SEO, not a replacement.
+                </span>{" "}
+                Schema markup, NAP consistency, structured FAQs, review
+                velocity, and authority citations all matter, but they have to
+                be engineered for retrieval, not just ranking. Different game,
+                different rules.
+              </li>
+              <li>
+                <span className="font-semibold text-slate-900">
+                  Local categories are unusually winnable.
+                </span>{" "}
+                The retrieval pool for &quot;plumber near Quincy MA&quot; is
+                20–40 sources, not 20 million. The businesses that move first
+                take the seats, and AI assistants are sticky once they pick a
+                recommendation.
+              </li>
+            </ul>
+          </FadeUp>
+        </section>
+
+        {/* 02 Services — DARK */}
+        <section className="section-deep">
+          <div className="px-6 py-28 sm:py-36 max-w-6xl mx-auto">
+            <FadeUp>
+              <SectionHeader
+                number="02"
+                title="How we work with clients."
+                dark
+              />
+            </FadeUp>
+            <div className="grid md:grid-cols-3 gap-6">
+              {services.map((s, i) => (
+                <FadeUp key={s.name} delay={i * 100}>
+                  <div className="bg-warm rounded-2xl p-7 flex flex-col h-full shadow-floating">
+                    <h3 className="text-2xl font-bold mb-3 text-slate-900">
+                      {s.name}
+                    </h3>
+                    <p className="text-slate-600 mb-6 leading-relaxed">
+                      {s.summary}
+                    </p>
+                    <ul className="space-y-3 text-sm text-slate-700 mt-auto">
+                      {s.items.map((item) => (
+                        <li
+                          key={item.text}
+                          className="flex gap-3 items-start"
+                        >
+                          <TierPill tier={item.tier} />
+                          <span>{item.text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </FadeUp>
+              ))}
             </div>
           </div>
         </section>
 
-        <footer className="px-6 py-10 max-w-5xl mx-auto border-t border-slate-200">
+        {/* 03 Methodology — light */}
+        <section className="px-6 py-28 sm:py-36 max-w-6xl mx-auto">
+          <FadeUp>
+            <SectionHeader number="03" title="Methodology." />
+          </FadeUp>
+          <FadeUp delay={80}>
+            <p className="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+              Every {SITE.name} engagement uses the same instrument before and
+              after. The same prompts, the same platforms, the same
+              measurement protocol. The 30-day re-audit is the proof.
+            </p>
+          </FadeUp>
+          <FadeUp delay={160}>
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-floating">
+              <div className="bg-slate-900 text-white grid grid-cols-[1fr_2fr] gap-4 px-6 py-4 text-xs uppercase tracking-wider font-semibold">
+                <div>Method</div>
+                <div>Description</div>
+              </div>
+              {methodology.map((m, i) => (
+                <div
+                  key={m.method}
+                  className={`grid grid-cols-1 sm:grid-cols-[1fr_2fr] gap-4 px-6 py-5 ${
+                    i % 2 === 0 ? "bg-white" : "bg-slate-50/60"
+                  }`}
+                >
+                  <div className="font-semibold text-slate-900">
+                    {m.method}
+                  </div>
+                  <div className="text-sm text-slate-600 leading-relaxed">
+                    {m.description}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FadeUp>
+        </section>
+
+        {/* 04 Sample Audit — light */}
+        <section className="px-6 py-28 sm:py-36 max-w-6xl mx-auto">
+          <FadeUp>
+            <SectionHeader number="04" title="What you receive." />
+          </FadeUp>
+          <FadeUp delay={80}>
+            <p className="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+              Every engagement ends with a branded PDF report tied to
+              measurable outcomes. Citation rate, crawler access, indexed
+              content, NAP consistency, schema coverage, and a prioritized
+              remediation roadmap. The 30-day re-audit documents the
+              before-and-after.
+            </p>
+          </FadeUp>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                tier: "Critical",
+                color: "red",
+                count: "3 blocking fixes",
+                desc: "Rendering, schema, indexing path. Nothing else takes effect until these are live.",
+              },
+              {
+                tier: "High",
+                color: "amber",
+                count: "5 direct-impact fixes",
+                desc: "robots.txt, NAP standardization, GBP optimization, crawler content, llms.txt.",
+              },
+              {
+                tier: "Medium",
+                color: "emerald",
+                count: "4 long-term plays",
+                desc: "Directory citations, review templates, badge cleanup, Apple Business Connect.",
+              },
+            ].map((card, i) => (
+              <FadeUp key={card.tier} delay={i * 100}>
+                <div
+                  className={`border rounded-2xl p-7 h-full shadow-floating ${
+                    card.color === "red"
+                      ? "bg-red-50 border-red-100"
+                      : card.color === "amber"
+                      ? "bg-amber-50 border-amber-100"
+                      : "bg-emerald-50 border-emerald-100"
+                  }`}
+                >
+                  <p
+                    className={`text-xs uppercase tracking-wider font-bold mb-3 ${
+                      card.color === "red"
+                        ? "text-red-900"
+                        : card.color === "amber"
+                        ? "text-amber-800"
+                        : "text-emerald-700"
+                    }`}
+                  >
+                    {card.tier}
+                  </p>
+                  <p className="font-semibold text-slate-900 mb-2 text-lg">
+                    {card.count}
+                  </p>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {card.desc}
+                  </p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+          <FadeUp delay={400}>
+            <p className="text-sm text-slate-500 mt-10 text-center">
+              Sample taken from a real {SITE.name} client audit. Specifics
+              vary by industry and current state.
+            </p>
+          </FadeUp>
+        </section>
+
+        {/* 05 Case Study — DARK */}
+        <section className="section-deep">
+          <div className="px-6 py-28 sm:py-36 max-w-6xl mx-auto">
+            <FadeUp>
+              <SectionHeader
+                number="05"
+                title="Case study: RISE Studios."
+                dark
+              />
+            </FadeUp>
+            <FadeUp delay={80}>
+              <div className="bg-slate-800/60 border border-slate-700 rounded-2xl p-8 sm:p-12">
+                <div className="flex flex-wrap items-baseline justify-between gap-2 mb-8">
+                  <p className="text-sm font-semibold tracking-wider uppercase text-slate-100">
+                    RISE Studios
+                  </p>
+                  <p className="text-xs uppercase tracking-wider text-slate-400">
+                    Weymouth, MA &nbsp;•&nbsp; Audited April 2026
+                  </p>
+                </div>
+                <p className="text-slate-300 leading-relaxed mb-10 max-w-3xl text-lg">
+                  First {SITE.name} engagement. Premier recording studio
+                  serving Greater Boston. 30-day re-audit pending May 2026.
+                  Before-and-after numbers fill in next month.
+                </p>
+                <div className="grid sm:grid-cols-3 gap-5 mb-10">
+                  <StatCard
+                    number={0}
+                    suffix="%"
+                    label="Baseline Citation Rate"
+                    sublabel="20 queries across 3 platforms"
+                    dark
+                  />
+                  <StatCard
+                    number={47}
+                    label="Words Crawled"
+                    sublabel="What AI bots see today"
+                    dark
+                  />
+                  <StatCard
+                    number={3}
+                    label="Critical Fixes"
+                    sublabel="Blocking all other progress"
+                    dark
+                  />
+                </div>
+                <p className="text-sm text-slate-300 leading-relaxed max-w-3xl">
+                  <span className="font-semibold text-slate-100">
+                    Diagnosis:
+                  </span>{" "}
+                  RISE Studios&apos; site is rendered entirely via JavaScript.
+                  AI crawlers do not execute JavaScript. When they visit, they
+                  receive a 47-word HTML shell with no room descriptions, no
+                  service detail, no location data, nothing to extract or
+                  cite. The fix is a Cloudflare Worker that detects bot user
+                  agents and serves pre-rendered, structured HTML directly.
+                  Every other AEO fix is blocked until that lands.
+                </p>
+              </div>
+            </FadeUp>
+          </div>
+        </section>
+
+        {/* 06 About — light */}
+        <section className="px-6 py-28 sm:py-36 max-w-6xl mx-auto">
+          <FadeUp>
+            <SectionHeader number="06" title="About." />
+          </FadeUp>
+          <FadeUp delay={80}>
+            <div className="max-w-3xl">
+              <p className="text-xl sm:text-2xl text-slate-800 leading-relaxed">
+                {SITE.name} is run by {SITE.personName}, a{" "}
+                {SITE.year.toLowerCase()} studying {SITE.major} at{" "}
+                {SITE.school}. We work with local businesses in{" "}
+                {SITE.regionShort} to get found by AI assistants. Prompt
+                panels across ChatGPT, Claude, and Perplexity. Technical
+                foundation underneath your website. Review and citation flows
+                that decide whether AI cites you or your competitor.
+              </p>
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed mt-6">
+                We&apos;re in these AI tools every day for school and side
+                projects, which means we see how they actually retrieve and
+                cite local sources, not how a marketing blog from 2019 says
+                they do. The engineering background means schema, structured
+                data, and crawler logs are tools we&apos;re comfortable with,
+                not buzzwords.
+              </p>
+            </div>
+          </FadeUp>
+        </section>
+
+        {/* 07 FAQ — light */}
+        <section className="px-6 py-28 sm:py-36 max-w-6xl mx-auto">
+          <FadeUp>
+            <SectionHeader number="07" title="Common questions." />
+          </FadeUp>
+          <div className="space-y-10 max-w-3xl">
+            {faqs.map((f, i) => (
+              <FadeUp key={f.q} delay={i * 60}>
+                <div>
+                  <h3 className="text-lg sm:text-xl font-semibold mb-3 text-slate-900">
+                    {f.q}
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
+                    {f.a}
+                  </p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </section>
+
+        {/* 08 Contact — DARK CTA */}
+        <section id="contact" className="section-deep">
+          <div className="px-6 py-32 sm:py-40 max-w-6xl mx-auto">
+            <FadeUp>
+              <SectionHeader
+                number="08"
+                title="Want to know if AI mentions your business?"
+                dark
+              />
+            </FadeUp>
+            <FadeUp delay={80}>
+              <div className="max-w-3xl">
+                <p className="text-lg sm:text-xl text-slate-300 leading-relaxed mb-10">
+                  We&apos;ll run a free audit across ChatGPT, Claude,
+                  Perplexity, Gemini, and Copilot, and tell you honestly
+                  whether AEO is worth your time right now.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href={`mailto:${SITE.email}?subject=Sparkbilt%20AEO%20Audit%20Inquiry`}
+                    className="inline-flex items-center gap-2 bg-warm text-slate-900 px-7 py-3.5 rounded-full font-medium hover:bg-white transition shadow-floating"
+                  >
+                    Email {SITE.email}
+                  </a>
+                  <a
+                    href={`tel:${SITE.phoneE164}`}
+                    className="inline-flex items-center gap-2 border border-slate-600 px-7 py-3.5 rounded-full font-medium text-slate-100 hover:bg-slate-800 transition"
+                  >
+                    Call {SITE.phone}
+                  </a>
+                </div>
+              </div>
+            </FadeUp>
+          </div>
+        </section>
+
+        <footer className="px-6 py-12 max-w-6xl mx-auto border-t border-slate-200">
           <p className="text-xs text-slate-500 tracking-widest uppercase text-center">
             {SITE.name} &nbsp;•&nbsp; Answer Engine Optimization &nbsp;•&nbsp;{" "}
             {new Date().getFullYear()}

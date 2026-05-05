@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE } from "../layout";
+import { FadeUp } from "../components/FadeUp";
 
 export const metadata: Metadata = {
   title: `Contact Received | ${SITE.name}`,
@@ -13,15 +14,15 @@ export const metadata: Metadata = {
 export default function ContactReceivedPage() {
   return (
     <main className="font-sans">
-      {/* Top brand bar (links back to home) */}
-      <div className="px-6 py-4 max-w-5xl mx-auto flex items-center justify-between">
+      {/* Top brand bar */}
+      <div className="px-6 py-5 max-w-6xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <img
             src="/icon.svg"
             alt=""
-            width={28}
-            height={28}
-            className="w-7 h-7"
+            width={32}
+            height={32}
+            className="w-8 h-8"
           />
           <span className="text-sm font-bold tracking-widest uppercase">
             {SITE.name}
@@ -32,57 +33,63 @@ export default function ContactReceivedPage() {
         </span>
       </div>
 
-      {/* Confirmation */}
-      <section className="px-6 pt-24 pb-16 max-w-5xl mx-auto">
-        <header className="mb-10 max-w-3xl">
-          <p className="text-sm font-bold text-red-900 tracking-tight mb-2">
-            CONFIRMED
+      <section className="px-6 pt-24 pb-24 sm:pt-32 sm:pb-32 max-w-6xl mx-auto">
+        <FadeUp>
+          <p className="text-xs sm:text-sm uppercase tracking-[0.25em] text-red-900 font-bold mb-8">
+            Confirmed
           </p>
-          <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight pb-3 border-b-2 border-emerald-700">
+        </FadeUp>
+        <FadeUp delay={80}>
+          <h1
+            className="text-display mb-12 max-w-5xl pb-6 border-b-2 border-emerald-700"
+            style={{ fontSize: "clamp(48px, 8vw, 110px)" }}
+          >
             Got it. We&apos;ll be in touch.
           </h1>
-        </header>
+        </FadeUp>
 
-        <div className="max-w-3xl">
-          <p className="text-lg text-slate-600 leading-relaxed mb-10">
-            Your inquiry just landed in {SITE.email}. Here&apos;s what happens
-            next.
-          </p>
+        <FadeUp delay={160}>
+          <div className="max-w-3xl">
+            <p className="text-lg sm:text-xl text-slate-600 leading-relaxed mb-12">
+              Your inquiry just landed in {SITE.email}. Here&apos;s what
+              happens next.
+            </p>
 
-          <ul className="space-y-6 text-slate-700">
-            <li className="leading-relaxed">
-              <span className="font-semibold text-slate-900">
-                Response within 24 hours.
-              </span>{" "}
-              Usually faster on weekdays. You&apos;ll get a brief reply
-              confirming what we&apos;ll cover and when.
-            </li>
-            <li className="leading-relaxed">
-              <span className="font-semibold text-slate-900">
-                Free 10-query mini-audit.
-              </span>{" "}
-              If you asked for one, expect a 1-2 page summary with screenshots
-              within 3 business days. No obligation, no follow-up unless you
-              want it.
-            </li>
-            <li className="leading-relaxed">
-              <span className="font-semibold text-slate-900">
-                Honest answer.
-              </span>{" "}
-              If AEO isn&apos;t worth your time right now, you&apos;ll hear
-              that. Not every business needs to invest in AI visibility this
-              quarter.
-            </li>
-          </ul>
+            <ul className="space-y-8 text-slate-700 text-base sm:text-lg leading-relaxed">
+              <li>
+                <span className="font-semibold text-slate-900">
+                  Response within 24 hours.
+                </span>{" "}
+                Usually faster on weekdays. You&apos;ll get a brief reply
+                confirming what we&apos;ll cover and when.
+              </li>
+              <li>
+                <span className="font-semibold text-slate-900">
+                  Free audit.
+                </span>{" "}
+                If you asked for one, expect a 1-2 page summary with
+                screenshots within 3 business days. No obligation, no
+                follow-up unless you want it.
+              </li>
+              <li>
+                <span className="font-semibold text-slate-900">
+                  Honest answer.
+                </span>{" "}
+                If AEO isn&apos;t worth your time right now, you&apos;ll hear
+                that. Not every business needs to invest in AI visibility
+                this quarter.
+              </li>
+            </ul>
 
-          <p className="text-sm text-slate-500 mt-12">
-            In the meantime, nothing else is needed from you. No need to reply
-            to this page; we already have your details.
-          </p>
-        </div>
+            <p className="text-sm text-slate-500 mt-16">
+              In the meantime, nothing else is needed from you. No need to
+              reply to this page; we already have your details.
+            </p>
+          </div>
+        </FadeUp>
       </section>
 
-      <footer className="px-6 py-10 max-w-5xl mx-auto border-t border-slate-200">
+      <footer className="px-6 py-12 max-w-6xl mx-auto border-t border-slate-200">
         <p className="text-xs text-slate-500 tracking-widest uppercase text-center">
           {SITE.name} &nbsp;&bull;&nbsp; Answer Engine Optimization
           &nbsp;&bull;&nbsp; {new Date().getFullYear()}
