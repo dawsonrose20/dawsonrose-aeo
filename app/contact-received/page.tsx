@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE } from "../layout";
+import { SITE } from "../site";
 import { FadeUp } from "../components/FadeUp";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
   title: `Contact Received | ${SITE.name}`,
   description:
     "Your inquiry has been received. Sparkbilt will respond within 24 hours.",
   robots: { index: false, follow: false, nocache: true },
-  alternates: { canonical: undefined },
+  alternates: { canonical: "/contact-received" },
 };
 
 export default function ContactReceivedPage() {

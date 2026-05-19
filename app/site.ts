@@ -1,0 +1,15 @@
+export const SITE = {
+  name: "Sparkbilt",
+  personName: "Dawson Rose",
+  role: "Answer Engine Optimization for Local Businesses",
+  region: "Norfolk County, MA",
+  regionShort: "Norfolk County",
+  school: "Northeastern University",
+  year: "Rising Sophomore",
+  major: "Electrical Engineering",
+  email: "dawson@sparkbilt.com",
+  phone: "(617) 564-3805",
+  phoneE164: "+16175643805",
+  headshot: "/Headshot.jpeg",
+  url: "https://sparkbilt.com",
+};
